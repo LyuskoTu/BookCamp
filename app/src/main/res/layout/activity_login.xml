@@ -3,25 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="14dp"
-    tools:context=".Activities.LoginActivity">
+    tools:context=".Activities.LoginActivity"
+    android:background="@drawable/background1white">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/usernameLayout"
+        style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
-
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        app:errorEnabled="true"
+        app:helperText="Полето Username трябва да е с поне 6 символа">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
             android:inputType="textFilter"
-            android:text="user"
+            android:text="Username"
             android:layout_height="wrap_content"
-            android:hint="Username" />
+            android:hint="Username"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
+        style="@style/MyTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColorHint="@color/black"
+        app:errorEnabled="true"
+        app:helperText="Полето Password трябва да е с поне 6 символа">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -40,7 +68,5 @@
             android:text="Login" />
 
     </GridLayout>
-
-
 
 </LinearLayout>

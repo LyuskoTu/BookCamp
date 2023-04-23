@@ -29,13 +29,20 @@
                 android:scaleType="centerCrop" />
 
             <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
                 android:id="@+id/toolbarInfo"
+                android:layout_width="match_parent"
 
-                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
                 android:layout_height="?actionBarSize"
-                app:titleTextColor="@android:color/black"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+                app:titleTextColor="@android:color/black" />
+
+            <RatingBar
+                android:id="@+id/ratingBar4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-6dp"
+                android:gravity="center" />
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -72,7 +79,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:text="drafts"
+                    android:text="Saved"
                     android:id="@+id/draftText"
                     android:layout_marginLeft="4dp"
                     android:textSize="18sp"
@@ -139,7 +146,6 @@
             android:textSize="20sp"
             app:cornerRadius="20dp" />
     </LinearLayout>
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

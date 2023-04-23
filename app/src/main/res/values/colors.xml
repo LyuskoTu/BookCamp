@@ -5,4 +5,11 @@
     <color name="colorAccent">#FF4081</color>
     <color name="green">#30AF34</color>
     <color name="buttonOff">#c0c0c0</color>
+    <color name="filedBackground">#F0EBE9</color>
+    <color name="grey">#F5F5F5</color>
+    <color name="white">#F5F5F5</color>
+    <color name="black">#000000
+    </color>
+
+
 </resources>
