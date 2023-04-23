@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,8 +32,9 @@ public class CampInfo extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ImageView hotelImage;
-    private TextView hotelDesc, views, drafts, completed;
-    private Button book, draftBook;
+    private TextView hotelDesc, views, visits, completed;
+    private ImageButton btnBack;
+    private Button save;
     private RecommendationAdapter.HotelViewHolder hotelViewHolder;
     Hotel hotel;
     int pos;
@@ -46,10 +48,10 @@ public class CampInfo extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbarInfo);
         hotelImage = findViewById(R.id.hotelImage);
         hotelDesc = findViewById(R.id.hotelDesc);
-        book = findViewById(R.id.confirmBooking);
-        draftBook = findViewById(R.id.draftBooking);
+        save = findViewById(R.id.confirmBooking);
+        btnBack =findViewById(R.id.btnBack);
         views = findViewById(R.id.views);
-        drafts = findViewById(R.id.draftText);
+        visits = findViewById(R.id.draftText);
         completed = findViewById(R.id.completedText);
 
 
@@ -75,11 +77,11 @@ public class CampInfo extends AppCompatActivity {
         hotelDesc.setText(hotel.getDescription());
 
         views.setText(campsResult.getHotels().get(pos).getVisits() + " views");
-        drafts.setText(campsResult.getHotels().get(pos).getDraftBookings() + " drafts");
+        visits.setText(campsResult.getHotels().get(pos).getDraftBookings() + " drafts");
         completed.setText(campsResult.getHotels().get(pos).getCompletedBookings() + " booked");
 
 
-        book.setOnClickListener(new View.OnClickListener() {
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -88,12 +90,12 @@ public class CampInfo extends AppCompatActivity {
 
             }
         });
-        draftBook.setOnClickListener(new View.OnClickListener() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 setBooking(false);
-                MainActivity.updatec(1);
+//                MainActivity.updatec(1);
                 Log.d("ononon", "onClick: ");
                 finish();
 

@@ -22,11 +22,14 @@
             app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle"
             app:layout_scrollFlags="exitUntilCollapsed|scroll">
 
+
+
             <ImageView
                 android:id="@+id/hotelImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
+
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbarInfo"
@@ -37,81 +40,100 @@
                 app:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
                 app:titleTextColor="@android:color/black" />
 
-            <RatingBar
-                android:id="@+id/ratingBar4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-6dp"
-                android:gravity="center" />
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="57dp"
+                android:layout_height="53dp"
+                android:layout_gravity="start"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="20dp"
+                android:src="@drawable/undo"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7" />
 
+            <ImageButton
+                android:id="@+id/btnAddToFavorites"
+                android:layout_width="69dp"
+                android:layout_height="51dp"
+                android:layout_gravity="end"
+                android:background="@null"
+                android:src="@drawable/aaddtofavorites" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:gravity="center"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="horizontal">
 
-               <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:fontFamily="monospace"
-                    android:id="@+id/views"
-                    android:gravity="center"
-                    android:text="views"
-                    android:layout_marginLeft="4dp"
-                    android:textSize="18sp"
-                     />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/views"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="4dp"
+                    android:fontFamily="monospace"
+                    android:gravity="left"
+                    android:text="views"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/draftText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="4dp"
                     android:fontFamily="monospace"
                     android:gravity="center"
                     android:text="Saved"
-                    android:id="@+id/draftText"
-                    android:layout_marginLeft="4dp"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:fontFamily="monospace"
-                    android:gravity="center"
-                    android:text="completed"
                     android:id="@+id/completedText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:layout_marginLeft="4dp"
-                    android:textSize="18sp"
-                    />
-
+                    android:fontFamily="monospace"
+                    android:gravity="right"
+                    android:text="completed"
+                    android:textSize="18sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@drawable/horizontal_line"/>
+                android:background="@drawable/horizontal_line" />
+
             <TextView
+                android:id="@+id/hotelDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/appbar"
-                android:padding="15dp"
-                android:id="@+id/hotelDesc"
-                android:gravity="center|clip_horizontal"
-                android:text="hhjhj"
                 android:fontFamily="serif-monospace"
-                android:textSize="15dp"/>
+                android:gravity="center|clip_horizontal"
+                android:padding="15dp"
+                android:text="hhjhj"
+                android:textSize="15dp" />
+
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -120,31 +142,48 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@android:color/white"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/confirmBooking"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="350dp"
-            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_marginTop="-6dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="Save"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:cornerRadius="20dp" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/draftBooking"
+
+        <Button
+            android:id="@+id/btnContacts"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="350dp"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_marginTop="-6dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="Home Page"
-            android:layout_gravity="center"
+            android:text="Contacts"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:cornerRadius="20dp" />
+
+        <Button
+            android:id="@+id/btnMap"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="Map"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:cornerRadius="20dp" />
+
     </LinearLayout>
 
 

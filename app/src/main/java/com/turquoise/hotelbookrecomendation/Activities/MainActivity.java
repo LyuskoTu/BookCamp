@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         tabLayout =  findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 
 
@@ -79,16 +78,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         });
         viewPager.setAdapter(viewPagerAdapter);
     }
-
-
-
-
-    public static void updatec(int n) {
-        int cur=Integer.valueOf(((TextView)toolbar.findViewById(R.id.cartCount)).getText().toString());
-        ((TextView)toolbar.findViewById(R.id.cartCount)).setText(String.valueOf(cur+n));
-    }
-
-
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
