@@ -1,6 +1,8 @@
 package com.turquoise.hotelbookrecomendation.Activities;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,13 +10,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.turquoise.hotelbookrecomendation.Fragments.HomeFrag;
 import com.turquoise.hotelbookrecomendation.Fragments.Recommendation;
 import com.turquoise.hotelbookrecomendation.R;
+import com.turquoise.hotelbookrecomendation.database.CampDatabase;
 import com.turquoise.hotelbookrecomendation.model.Booking;
+import com.turquoise.hotelbookrecomendation.model.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,6 +50,20 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         tabLayout =  findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        //HERE ADD MOCK USERS
+        CampDatabase userDatabase = Room.databaseBuilder(getApplicationContext(),
+                        CampDatabase.class, "user_database")
+                .fallbackToDestructiveMigration()
+                .build();
+
+        List<User> users = new ArrayList<>();
+        users.add(new User("johnnyy","John","Doe","pass"));
+
+        new Thread(() -> {
+            userDatabase.userDao().insertAll((User) users);
+            Log.d("TAG","INSERTED!!!");
+        }).start();
 
     }
 
