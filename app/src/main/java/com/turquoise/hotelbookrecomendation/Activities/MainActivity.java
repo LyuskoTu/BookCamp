@@ -1,8 +1,12 @@
 package com.turquoise.hotelbookrecomendation.Activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -28,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     public static Booking bookings=new Booking();
 
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -43,16 +46,26 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout =  findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        ImageButton favoriteBtn = findViewById(R.id.favoriteBtn);
+
+        favoriteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setView(R.layout.hotels_dialog);
+                builder.setPositiveButton("OK", null);
+                builder.show();
+            }
+        });
     }
 
-
-
     private void setupViewPager(final ViewPager viewPager) {
-        final ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFrag(new HomeFrag(),"Home");
-        viewPagerAdapter.addFrag(new Recommendation(),"Recommendations");
+        final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFrag(new HomeFrag(), "Home");
+        viewPagerAdapter.addFrag(new Recommendation(), "Recommendations");
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -61,13 +74,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
             @Override
             public void onPageSelected(int position) {
-                if(position==1){
-
-                    ((Recommendation)viewPagerAdapter.getItem(position)).updateList();
-
-                }
-                else{
-                    ((HomeFrag)viewPagerAdapter.getItem(position)).updateList();
+                if (position == 1) {
+                    ((Recommendation) viewPagerAdapter.getItem(position)).updateList();
+                } else {
+                    ((HomeFrag) viewPagerAdapter.getItem(position)).updateList();
                 }
             }
 
@@ -84,8 +94,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
         public ViewPagerAdapter(FragmentManager manager) {
-            super(manager,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-
+            super(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         }
 
         @Override
