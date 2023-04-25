@@ -8,8 +8,11 @@
     <color name="filedBackground">#F0EBE9</color>
     <color name="grey">#F5F5F5</color>
     <color name="white">#F5F5F5</color>
-    <color name="black">#000000
-    </color>
+    <color name="black">#000000</color>
+    <color name="pink">#FFC0CB </color>
+
+
+
 
 
 </resources>

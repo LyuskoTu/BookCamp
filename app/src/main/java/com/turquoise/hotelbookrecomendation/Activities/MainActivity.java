@@ -1,9 +1,15 @@
 package com.turquoise.hotelbookrecomendation.Activities;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -60,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 builder.show();
             }
         });
+
+
     }
 
     private void setupViewPager(final ViewPager viewPager) {
@@ -117,4 +125,5 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             return mFragmentTitleList.get(position);
         }
     }
+
 }

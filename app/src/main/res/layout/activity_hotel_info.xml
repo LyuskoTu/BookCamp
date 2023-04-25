@@ -153,7 +153,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="Save"
+            android:text="Препоръчай"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:cornerRadius="20dp" />
@@ -166,10 +166,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="Contacts"
+            android:text="Контакти"
             android:textAllCaps="false"
             android:textSize="20sp"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="20dp"
+            android:onClick="showContactsPopUp"/>
 
         <Button
             android:id="@+id/btnMap"
@@ -179,12 +180,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="Map"
+            android:text="Карта"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:cornerRadius="20dp" />
 
     </LinearLayout>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

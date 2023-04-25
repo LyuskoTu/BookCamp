@@ -2,15 +2,22 @@ package com.turquoise.hotelbookrecomendation.Activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -54,6 +61,17 @@ public class CampInfo extends AppCompatActivity {
         visits = findViewById(R.id.draftText);
         completed = findViewById(R.id.completedText);
 
+        Button button = findViewById(R.id.btnContacts);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CampInfo.this);
+                builder.setView(R.layout.contacts_popup);
+                builder.setPositiveButton("OK", null);
+                builder.show();
+
+            }
+        });
 
     }
 
@@ -87,6 +105,7 @@ public class CampInfo extends AppCompatActivity {
 
                 setBooking(true);
                 finish();
+
 
             }
         });
@@ -166,4 +185,23 @@ public class CampInfo extends AppCompatActivity {
 
 
     }
+
+    public void showContactsPopUp(View view) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.contacts_popup, null);
+
+        PopupWindow popupWindow = new PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+    }
+    public void onCloseButtonClick(View view) {
+        onBackPressed();
+    }
+
 }
