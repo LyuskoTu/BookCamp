@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
+        android:textColorHint="@color/black"
         app:errorEnabled="true"
         app:helperText="Полето Username трябва да е с поне 6 символа">
 
@@ -24,7 +25,6 @@
             android:layout_width="match_parent"
             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
             android:inputType="textFilter"
-            android:text="Username"
             android:layout_height="wrap_content"
             android:hint="Username"
             android:maxLines="1"
