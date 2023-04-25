@@ -18,7 +18,8 @@ public interface UserDao {
     List<User> getAll();
 
     @Insert
-    void insertAll(User... users);
+    void insertUser(User user);
+
 
     @Delete
     void delete(User user);

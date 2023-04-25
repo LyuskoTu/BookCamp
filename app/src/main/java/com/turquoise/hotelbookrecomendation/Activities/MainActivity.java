@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         users.add(new User("johnnyy","John","Doe","pass"));
 
         new Thread(() -> {
-            userDatabase.userDao().insertAll((User) users);
+            userDatabase.userDao().insertUser(users.get(0));
             Log.d("TAG","INSERTED!!!");
         }).start();
 
