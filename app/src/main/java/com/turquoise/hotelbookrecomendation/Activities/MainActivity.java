@@ -24,6 +24,7 @@ import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.turquoise.hotelbookrecomendation.Fragments.FavouriteFrag;
 import com.turquoise.hotelbookrecomendation.Fragments.HomeFrag;
 import com.turquoise.hotelbookrecomendation.Fragments.Recommendation;
 import com.turquoise.hotelbookrecomendation.R;
@@ -93,8 +94,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     private void setupViewPager(final ViewPager viewPager) {
         final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFrag(new HomeFrag(), "Home");
-        viewPagerAdapter.addFrag(new Recommendation(), "Recommendations");
+        viewPagerAdapter.addFrag(new HomeFrag(), "Начало");
+        viewPagerAdapter.addFrag(new Recommendation(), "Препоръчан");
+        viewPagerAdapter.addFrag(new FavouriteFrag(),"Запазени");
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -105,15 +107,20 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             public void onPageSelected(int position) {
                 if (position == 1) {
                     ((Recommendation) viewPagerAdapter.getItem(position)).updateList();
+                } else if (position == 2) {
+                    ((FavouriteFrag) viewPagerAdapter.getItem(position)).updateList();
                 } else {
                     ((HomeFrag) viewPagerAdapter.getItem(position)).updateList();
                 }
             }
 
+
             @Override
             public void onPageScrollStateChanged(int state) {
 
             }
+
+
         });
         viewPager.setAdapter(viewPagerAdapter);
     }
