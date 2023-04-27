@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 import com.turquoise.hotelbookrecomendation.R;
 
+import com.turquoise.hotelbookrecomendation.model.User;
+
 import static com.turquoise.hotelbookrecomendation.Utils.Utilities.newActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +22,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button login;
     private TextInputLayout username;
     private TextInputLayout password;
+
+    private User user;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +43,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.loginBtn) {
-            if (getUsername().length() < 6) {
-                setError(username, "Потребителското име трябва да е с поне 6 символа");
-            } else if (getPassword().length() < 6) {
-                setError(password, "Паролата трябва да е с поне 6 символа");
+            if (getUsername().equals(user.getUsername())) {
+                setError(username, "Invalid Username");
+            } else if (getPassword().equals(user.getPassword())) {
+                setError(password, "Invalid password");
             } else {
                 SharedPreferences sharedPreferences = getSharedPreferences(getUsername(), MODE_PRIVATE);
                 SharedPreferences.Editor editor = getSharedPreferences(getUsername(), MODE_PRIVATE).edit();
@@ -76,8 +82,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (s.length() < 6) {
-                setError(username, "Потребителското име трябва да е с поне 6 символа");
+            if (s.toString().equals(user.getUsername())) {
+                setError(username, "asd");
             } else {
                 setError(username, null);
             }

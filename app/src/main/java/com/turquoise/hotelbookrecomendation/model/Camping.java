@@ -1,19 +1,24 @@
 package com.turquoise.hotelbookrecomendation.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+public class Camping implements Serializable {
 
-public class Hotel implements Serializable {
-
+    @SerializedName("id")
+    @Expose
+    private int id;
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("ratings")
+    @SerializedName("rating")
     @Expose
-    private String ratings;
+    private String rating;
     @SerializedName("visits")
     @Expose
     private String visits;
@@ -33,6 +38,14 @@ public class Hotel implements Serializable {
     @Expose
     private String imageUrl;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -41,12 +54,12 @@ public class Hotel implements Serializable {
         this.name = name;
     }
 
-    public String getRatings() {
-        return ratings;
+    public String getRating() {
+        return rating;
     }
 
-    public void setRatings(String ratings) {
-        this.ratings = ratings;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public String getVisits() {
@@ -96,5 +109,4 @@ public class Hotel implements Serializable {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
 }

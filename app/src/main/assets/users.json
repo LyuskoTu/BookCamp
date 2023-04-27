@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "johnny",
+      "firstName": "John",
+      "lastName": "Doe",
+      "password": "qweasdzxc753",
+      "favourites": [
+        {}
+      ]
+    }
+
+  ]
+
+}
