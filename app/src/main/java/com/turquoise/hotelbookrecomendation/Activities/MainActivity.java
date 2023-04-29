@@ -1,6 +1,7 @@
 package com.turquoise.hotelbookrecomendation.Activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -31,7 +32,6 @@ import com.turquoise.hotelbookrecomendation.Fragments.FavouriteFrag;
 import com.turquoise.hotelbookrecomendation.Fragments.HomeFrag;
 import com.turquoise.hotelbookrecomendation.Fragments.Recommendation;
 import com.turquoise.hotelbookrecomendation.R;
-import com.turquoise.hotelbookrecomendation.database.CampDatabase;
 import com.turquoise.hotelbookrecomendation.model.Booking;
 import com.turquoise.hotelbookrecomendation.model.User;
 
@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     private static Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    public static Booking bookings=new Booking();
+    public static Booking bookings = new Booking();
 
+    private ImageButton logOut;
 
 
     @Override
@@ -66,20 +67,17 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        //HERE ADD MOCK USERS
-        CampDatabase userDatabase = Room.databaseBuilder(getApplicationContext(),
-                        CampDatabase.class, "user_database")
-                .fallbackToDestructiveMigration()
-                .build();
-
-        List<User> users = new ArrayList<>();
-        users.add(new User("johnnyy","John","Doe","pass"));
-
-        new Thread(() -> {
-            userDatabase.userDao().insertUser(users.get(0));
-            Log.d("TAG","INSERTED!!!");
-        }).start();
-
+        //LOG OUT
+        logOut = findViewById(R.id.logoutButton);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle logout button click
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish(); // Finish the current activity so that the user cannot go back to it with the back button
+            }
+        });
 
 
         FloatingActionButton favoriteBtn = findViewById(R.id.favoriteBtn);
@@ -92,14 +90,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }
 
 
-
-
-
     private void setupViewPager(final ViewPager viewPager) {
         final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFrag(new HomeFrag(), "Начало");
         viewPagerAdapter.addFrag(new Recommendation(), "Препоръчан");
-        viewPagerAdapter.addFrag(new FavouriteFrag(),"Запазени");
+        viewPagerAdapter.addFrag(new FavouriteFrag(), "Запазени");
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
