@@ -53,6 +53,15 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/rememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Remember Me"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,5 +77,16 @@
             android:text="Login" />
 
     </GridLayout>
+
+    <TextView
+        android:id="@+id/signUpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="116dp"
+        android:text="Don't have an account? Sign up"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
 
 </LinearLayout>
