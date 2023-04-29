@@ -3,21 +3,31 @@ package com.turquoise.hotelbookrecomendation.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "users")
-public class User {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-    private String username;
-    private String firstName;
-    private String lastName;
-    private String password;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public User(String username, String firstName, String lastName, String password) {
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-    }
+import java.io.Serializable;
+import java.util.List;
+
+public class User implements Serializable {
+    @SerializedName("id")
+    @Expose
+    private int id;
+    @SerializedName("username")
+    @Expose
+    private String username;
+    @SerializedName("firstName")
+    @Expose
+    private String firstName;
+    @SerializedName("lastName")
+    @Expose
+    private String lastName;
+    @SerializedName("password")
+    @Expose
+    private String password;
+    @SerializedName("favourites")
+    @Expose
+    private List<Camping> favourites;
 
 
     public int getId() {
@@ -58,5 +68,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Camping> getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(List<Camping> favourites) {
+        this.favourites = favourites;
     }
 }
