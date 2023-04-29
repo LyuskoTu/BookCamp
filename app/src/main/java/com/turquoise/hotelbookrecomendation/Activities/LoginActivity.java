@@ -42,12 +42,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.loginBtn) {
-            if (getUsername().equals(user.getUsername())) {
-                setError(username, "Invalid Username");
-            } else if (getPassword().equals(user.getPassword())) {
-                setError(password, "Invalid password");
-            } else {
+        if (getUsername().length() < 6) {
+            setError(username, "Потребителското име трябва да е с поне 6 символа");
+        } else if (getPassword().length() < 6) {
+            setError(password, "Паролата трябва да е с поне 6 символа");
+        }else {
                 SharedPreferences sharedPreferences = getSharedPreferences(getUsername(), MODE_PRIVATE);
                 SharedPreferences.Editor editor = getSharedPreferences(getUsername(), MODE_PRIVATE).edit();
                 if (sharedPreferences.getString("active", "in").equals("in")) {
@@ -57,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 newActivity(LoginActivity.this, MainActivity.class);
             }
         }
-    }
+
 
     private void setError(@NonNull TextInputLayout inputLayout, String message) {
         inputLayout.setError(message);
@@ -82,8 +81,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (s.toString().equals(user.getUsername())) {
-                setError(username, "asd");
+            if (s.length() < 6) {
+                setError(username, "Потребителското име трябва да е с поне 6 символа");
             } else {
                 setError(username, null);
             }
