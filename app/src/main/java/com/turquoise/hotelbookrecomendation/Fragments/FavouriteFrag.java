@@ -62,8 +62,8 @@ public class FavouriteFrag extends Fragment {
      * @return A new instance of fragment Recommendation.
      */
     // TODO: Rename and change types and number of parameters
-    public static Recommendations newInstance(String param1, String param2) {
-        Recommendations fragment = new Recommendations();
+    public static Recommendation newInstance(String param1, String param2) {
+        Recommendation fragment = new Recommendation();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -160,7 +160,7 @@ public class FavouriteFrag extends Fragment {
 
         String sa = "";
 
-        for (String sss : Recommendations.tagSet) {
+        for (String sss : Recommendation.tagSet) {
             sa += sss;
         }
 

@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         //log out confirmation dialog
 
 
-        FloatingActionButton favoriteBtn = findViewById(R.id.favoriteBtn);
+        FloatingActionButton favoriteBtn = findViewById(R.id.searchBtn);
         favoriteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFrag(new HomeFrag(), "Начало");
         viewPagerAdapter.addFrag(new Recommendation(), "Препоръчан");
-        viewPagerAdapter.addFrag(new FavouriteFrag(), "Запазени");
+        viewPagerAdapter.addFrag(new FavouriteFrag(), "История");
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

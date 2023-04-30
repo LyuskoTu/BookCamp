@@ -24,7 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.turquoise.hotelbookrecomendation.Adapters.RecommendationAdapter;
-import com.turquoise.hotelbookrecomendation.Fragments.Recommendations;
+import com.turquoise.hotelbookrecomendation.Fragments.Recommendation;
 import com.turquoise.hotelbookrecomendation.R;
 import com.turquoise.hotelbookrecomendation.model.Booking;
 import com.turquoise.hotelbookrecomendation.model.Hotel;
@@ -162,7 +162,7 @@ public class CampInfo extends AppCompatActivity {
 
         for (String sss : s) {
             sa += sss;
-            Recommendations.tagSet.add(sss);
+            Recommendation.tagSet.add(sss);
         }
 
         if (complete) {
