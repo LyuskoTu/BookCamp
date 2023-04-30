@@ -85,8 +85,11 @@
         android:layout_gravity="center"
         android:layout_marginTop="116dp"
         android:text="Don't have an account? Sign up"
-        android:textColor="@color/white"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:clickable="true"
+        android:onClick="openSignUpPage"/>
+
 
 
 </LinearLayout>
