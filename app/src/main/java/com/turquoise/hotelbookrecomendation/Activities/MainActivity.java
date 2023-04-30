@@ -2,10 +2,20 @@ package com.turquoise.hotelbookrecomendation.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.nfc.Tag;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,15 +23,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.turquoise.hotelbookrecomendation.Fragments.FavouriteFrag;
 import com.turquoise.hotelbookrecomendation.Fragments.HomeFrag;
-import com.turquoise.hotelbookrecomendation.Fragments.Recommendations;
+import com.turquoise.hotelbookrecomendation.Fragments.Recommendation;
 import com.turquoise.hotelbookrecomendation.R;
 import com.turquoise.hotelbookrecomendation.model.Booking;
+import com.turquoise.hotelbookrecomendation.model.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -67,8 +79,38 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             }
         });
 
+        //logOut confirmation dialog
 
-        FloatingActionButton favoriteBtn = findViewById(R.id.searchBtn);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show exit confirmation dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Exit");
+                builder.setMessage("Are you sure you want to exit the app?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish(); // Close the activity
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Dismiss the dialog
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+
+        //log out confirmation dialog
+
+
+        FloatingActionButton favoriteBtn = findViewById(R.id.favoriteBtn);
         favoriteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,8 +123,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     private void setupViewPager(final ViewPager viewPager) {
         final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFrag(new HomeFrag(), "Начало");
-        viewPagerAdapter.addFrag(new Recommendations(), "Препоръчан");
-        viewPagerAdapter.addFrag(new FavouriteFrag(), "История");
+        viewPagerAdapter.addFrag(new Recommendation(), "Препоръчан");
+        viewPagerAdapter.addFrag(new FavouriteFrag(), "Запазени");
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -92,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             @Override
             public void onPageSelected(int position) {
                 if (position == 1) {
-                    ((Recommendations) viewPagerAdapter.getItem(position)).updateList();
+                    ((Recommendation) viewPagerAdapter.getItem(position)).updateList();
                 } else if (position == 2) {
                     ((FavouriteFrag) viewPagerAdapter.getItem(position)).updateList();
                 } else {
