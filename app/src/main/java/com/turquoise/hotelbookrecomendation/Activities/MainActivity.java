@@ -78,6 +78,35 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 finish(); // Finish the current activity so that the user cannot go back to it with the back button
             }
         });
+//====
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show exit confirmation dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Exit");
+                builder.setMessage("Are you sure you want to exit the app?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish(); // Close the activity
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Dismiss the dialog
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+
+        //===
 
 
         FloatingActionButton favoriteBtn = findViewById(R.id.favoriteBtn);
