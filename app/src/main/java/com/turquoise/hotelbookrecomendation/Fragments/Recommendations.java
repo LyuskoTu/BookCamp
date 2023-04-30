@@ -30,7 +30,7 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Recommendation extends Fragment {
+public class Recommendations extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -46,7 +46,7 @@ public class Recommendation extends Fragment {
 
     private CampsResult campsResult;
 
-    public Recommendation() {
+    public Recommendations() {
         // Required empty public constructor
     }
 
@@ -59,8 +59,8 @@ public class Recommendation extends Fragment {
      * @return A new instance of fragment Recommendation.
      */
     // TODO: Rename and change types and number of parameters
-    public static Recommendation newInstance(String param1, String param2) {
-        Recommendation fragment = new Recommendation();
+    public static Recommendations newInstance(String param1, String param2) {
+        Recommendations fragment = new Recommendations();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -131,7 +131,7 @@ public class Recommendation extends Fragment {
 
         String sa = "";
 
-        for (String sss : Recommendation.tagSet) {
+        for (String sss : Recommendations.tagSet) {
             sa += sss;
         }
 
@@ -175,7 +175,7 @@ public class Recommendation extends Fragment {
 
         for (Hotel hotel : campsResult.getHotels()) {
             for (String hh : hotel.getTags().split("\n")) {
-                if (Recommendation.tagSet.contains(hh) && !registeredHotels.contains(hotel.getName())) {
+                if (Recommendations.tagSet.contains(hh) && !registeredHotels.contains(hotel.getName())) {
 
                     hotelList.add(hotel);
 
