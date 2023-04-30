@@ -78,7 +78,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 finish(); // Finish the current activity so that the user cannot go back to it with the back button
             }
         });
-//====
+
+        //logOut confirmation dialog
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         });
 
 
-        //===
+        //log out confirmation dialog
 
 
         FloatingActionButton favoriteBtn = findViewById(R.id.favoriteBtn);
