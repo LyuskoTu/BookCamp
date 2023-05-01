@@ -29,6 +29,9 @@ public class User implements Serializable {
     @Expose
     private List<Camping> favourites;
 
+    public User(String jsonUsername, String jsonPassword) {
+    }
+
 
     public int getId() {
         return id;
