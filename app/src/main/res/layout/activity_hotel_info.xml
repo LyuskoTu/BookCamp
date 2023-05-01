@@ -51,13 +51,6 @@
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7" />
 
-            <ImageButton
-                android:id="@+id/btnAddToFavorites"
-                android:layout_width="69dp"
-                android:layout_height="51dp"
-                android:layout_gravity="end"
-                android:background="@null"
-                android:src="@drawable/aaddtofavorites" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
