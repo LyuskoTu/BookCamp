@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -32,9 +33,17 @@ import com.turquoise.hotelbookrecomendation.Fragments.FavouriteFrag;
 import com.turquoise.hotelbookrecomendation.Fragments.HomeFrag;
 import com.turquoise.hotelbookrecomendation.Fragments.Recommendation;
 import com.turquoise.hotelbookrecomendation.R;
+import com.turquoise.hotelbookrecomendation.Utils.Utilities;
 import com.turquoise.hotelbookrecomendation.model.Booking;
+import com.turquoise.hotelbookrecomendation.model.Hotel;
 import com.turquoise.hotelbookrecomendation.model.User;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
 
         //LOG OUT
         logOut = findViewById(R.id.logoutButton);
@@ -119,6 +129,32 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         });
     }
 
+    private String loadJSONStringFromAsset(String fileName) {
+        String jsonString = null;
+        try {
+            InputStream is = getAssets().open(fileName);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            jsonString = new String(buffer, "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonString;
+    }
+
+    private JSONObject loadHotelsFromJSON() {
+        String jsonString = loadJSONStringFromAsset("hotels.json"); // зареждане на JSON файл от assets папката
+        if (jsonString != null) {
+            try {
+                return new JSONObject(jsonString);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 
     private void setupViewPager(final ViewPager viewPager) {
         final ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -182,26 +218,55 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         }
     }
 
-    private void showSearchDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Търсене на хотел");
-        builder.setMessage("Въведете името на хотела:");
-        final EditText input = new EditText(this);
-        builder.setView(input);
-        builder.setPositiveButton("Търсене", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String hotelName = input.getText().toString();
-                // Тук може да добавите логика за търсене на хотела
-            }
-        });
-        builder.setNegativeButton("Отказ", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.show();
-    }
+        private void showSearchDialog() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Търсене на хотел");
+            builder.setMessage("Въведете името на хотела:");
+            final EditText input = new EditText(this);
+            builder.setView(input);
+            builder.setPositiveButton("Търсене", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String hotelName = input.getText().toString();
+                    JSONObject hotels = loadHotelsFromJSON(); // зареждане на данните за хотелите от JSON файл
+                    if (hotels != null) {
+                        try {
+                            JSONArray hotelList = hotels.getJSONArray("hotels");
+                            for (int i = 0; i < hotelList.length(); i++) {
+                                JSONObject hotel = hotelList.getJSONObject(i);
+                                String name = hotel.getString("name");
+    //                            int views = hotel.getInt("numReviews");
+    //                            String imageUrl = hotel.getString("imageUrl");
+    //                            hotel.getDouble("rating");
+    //                            hotel.getInt("price");
+
+
+                                if (name.equalsIgnoreCase(hotelName)) { // търсене на хотела по име
+    //                                 показване на данните на хотела в диалоговия прозорец
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                    builder.setView(R.layout.find_success);
+                                    builder.setPositiveButton("OK", null);
+                                    builder.show();
+
+
+                                    return;
+                                }
+                            }
+                            // ако няма хотел, отговарящ на името, показва се съобщение
+                            AlertDialog.Builder notFoundBuilder = new AlertDialog.Builder(MainActivity.this);
+                            notFoundBuilder.setTitle("Хотелът не е намерен");
+                            notFoundBuilder.setMessage("Моля, опитайте отново.");
+                            notFoundBuilder.setPositiveButton("OK", null);
+                            notFoundBuilder.show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+            builder.setNegativeButton("Отказ", null);
+            builder.show();
+        }
+
 
 }
