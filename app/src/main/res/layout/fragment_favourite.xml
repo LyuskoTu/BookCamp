@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,31 +6,27 @@
     tools:context=".Fragments.HomeFrag">
 
     <androidx.recyclerview.widget.RecyclerView
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/hotelList"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_clear_list" />
 
     <Button
         android:id="@+id/btn_clear_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Clear List"
-        android:layout_alignBottom="@id/btn_clear_list"/>
-
+        android:layout_alignParentBottom="true" />
 
     <TextView
+        android:id="@+id/emptyFavouritePlaceHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:id="@+id/emptyFavouritePlaceHolder"
-        android:text="История на разглежданите Къмпинги/Хотели"
         android:layout_centerInParent="true"
+        android:fontFamily="monospace"
         android:gravity="center"
-        android:visibility="invisible"
-        android:textSize="23sp"/>
-
-
+        android:text="История на разглежданите Къмпинги/Хотели"
+        android:textSize="23sp"
+        android:visibility="invisible" />
 
 </RelativeLayout>
