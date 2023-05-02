@@ -37,7 +37,7 @@
         style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="Парола"
         android:textColorHint="@color/black"
         app:errorEnabled="true"
         app:helperText="Полето Password трябва да е с поне 6 символа">

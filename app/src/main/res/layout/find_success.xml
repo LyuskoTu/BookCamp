@@ -20,7 +20,7 @@
         android:id="@+id/popup_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Хотела е наличен. Можете да проверите в листа с Хотели."
+        android:text="Къмпинга е наличен. Можете да проверите в листа с Къмпинги."
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 

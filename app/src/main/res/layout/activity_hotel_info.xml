@@ -83,7 +83,7 @@
                     android:layout_marginLeft="4dp"
                     android:fontFamily="monospace"
                     android:gravity="left"
-                    android:text="views"
+                    android:text="Гледани"
                     android:textSize="18sp" />
 
                 <TextView
@@ -94,7 +94,7 @@
                     android:layout_marginLeft="4dp"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:text="Saved"
+                    android:text="Карти"
                     android:textSize="18sp" />
 
                 <TextView
@@ -105,7 +105,7 @@
                     android:layout_marginLeft="4dp"
                     android:fontFamily="monospace"
                     android:gravity="right"
-                    android:text="completed"
+                    android:text="Запазени"
                     android:textSize="18sp" />
 
             </LinearLayout>

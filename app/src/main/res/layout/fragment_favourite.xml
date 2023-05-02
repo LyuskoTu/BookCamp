@@ -17,7 +17,8 @@
         android:id="@+id/btn_clear_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clear List" />
+        android:text="Clear List"
+        android:layout_alignBottom="@id/btn_clear_list"/>
 
 
     <TextView
