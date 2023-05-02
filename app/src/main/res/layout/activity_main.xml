@@ -93,7 +93,8 @@
                     android:layout_marginEnd="13dp"
                     android:background="@android:color/transparent"
                     android:contentDescription="@string/sing_out"
-                    android:src="@drawable/logout" />
+                    android:src="@drawable/logout"
+                    android:tint="@android:color/white" />j
 
             </RelativeLayout>
 
