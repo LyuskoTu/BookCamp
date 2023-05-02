@@ -1,6 +1,7 @@
 package com.turquoise.hotelbookrecomendation.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -62,6 +63,27 @@ public class CampInfo extends AppCompatActivity {
         completed = findViewById(R.id.completedText);
 
         Button button = findViewById(R.id.btnContacts);
+
+        Button mapButton = findViewById(R.id.mapButton);
+
+        // Create a Uri object from the Google Maps URL
+
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a Uri object from the Google Maps URL
+                Uri gmmIntentUri = Uri.parse("geo:42.3652,-71.0621");
+
+                // Create an Intent object and set the action to ACTION_VIEW
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+                // Set the package name of the Google Maps app
+                mapIntent.setPackage("com.google.android.apps.maps");
+
+                // Start the Google Maps app
+                startActivity(mapIntent);
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +127,6 @@ public class CampInfo extends AppCompatActivity {
 
                 setBooking(true);
                 finish();
-
 
             }
         });

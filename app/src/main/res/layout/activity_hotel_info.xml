@@ -166,7 +166,7 @@
             android:onClick="showContactsPopUp"/>
 
         <Button
-            android:id="@+id/btnMap"
+            android:id="@+id/mapButton"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
