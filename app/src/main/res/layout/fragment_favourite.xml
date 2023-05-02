@@ -13,4 +13,25 @@
         android:id="@+id/hotelList"
         />
 
+    <Button
+        android:id="@+id/btn_clear_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear List"
+        android:layout_alignBottom="@id/btn_clear_list"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:id="@+id/emptyFavouritePlaceHolder"
+        android:text="История на разглежданите Къмпинги/Хотели"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textSize="23sp"/>
+
+
+
 </RelativeLayout>

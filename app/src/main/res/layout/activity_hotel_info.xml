@@ -51,13 +51,6 @@
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7" />
 
-            <ImageButton
-                android:id="@+id/btnAddToFavorites"
-                android:layout_width="69dp"
-                android:layout_height="51dp"
-                android:layout_gravity="end"
-                android:background="@null"
-                android:src="@drawable/aaddtofavorites" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -90,7 +83,7 @@
                     android:layout_marginLeft="4dp"
                     android:fontFamily="monospace"
                     android:gravity="left"
-                    android:text="views"
+                    android:text="Гледани"
                     android:textSize="18sp" />
 
                 <TextView
@@ -101,7 +94,7 @@
                     android:layout_marginLeft="4dp"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:text="Saved"
+                    android:text="Карти"
                     android:textSize="18sp" />
 
                 <TextView
@@ -112,7 +105,7 @@
                     android:layout_marginLeft="4dp"
                     android:fontFamily="monospace"
                     android:gravity="right"
-                    android:text="completed"
+                    android:text="Запазени"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -173,7 +166,7 @@
             android:onClick="showContactsPopUp"/>
 
         <Button
-            android:id="@+id/btnMap"
+            android:id="@+id/mapButton"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="60dp"

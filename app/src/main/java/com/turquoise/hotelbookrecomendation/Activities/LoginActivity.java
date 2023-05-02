@@ -17,6 +17,13 @@ import com.turquoise.hotelbookrecomendation.model.User;
 
 import static com.turquoise.hotelbookrecomendation.Utils.Utilities.newActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button login;
@@ -24,7 +31,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextInputLayout password;
 
     private User user;
-
 
 
     @Override
@@ -42,20 +48,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (getUsername().length() < 6) {
-            setError(username, "Потребителското име трябва да е с поне 6 символа");
-        } else if (getPassword().length() < 6) {
-            setError(password, "Паролата трябва да е с поне 6 символа");
-        }else {
-                SharedPreferences sharedPreferences = getSharedPreferences(getUsername(), MODE_PRIVATE);
-                SharedPreferences.Editor editor = getSharedPreferences(getUsername(), MODE_PRIVATE).edit();
-                if (sharedPreferences.getString("active", "in").equals("in")) {
-                    SharedPreferences.Editor edit = getSharedPreferences("cur", MODE_PRIVATE).edit();
-                    edit.putString("user", getUsername());
-                }
-                newActivity(LoginActivity.this, MainActivity.class);
-            }
+        String enteredUsername = getUsername();
+        String enteredPassword = getPassword();
+
+        User user = getUserFromJson(enteredUsername, enteredPassword);
+
+        if (user == null) {
+            setError(username, "Невалидно потребителско име или парола");
+        } else {
+            // Потребителското име и паролата са валидни
+            newActivity(LoginActivity.this, MainActivity.class);
         }
+    }
+
 
 
     private void setError(@NonNull TextInputLayout inputLayout, String message) {
@@ -107,4 +112,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         }
     };
+
+    private User getUserFromJson(String username, String password) {
+        User user = null;
+
+        try {
+            InputStream is = getAssets().open("users.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray usersArray = jsonObject.getJSONArray("users");
+
+            for (int i = 0; i < usersArray.length(); i++) {
+                JSONObject userObject = usersArray.getJSONObject(i);
+                String jsonUsername = userObject.getString("username");
+                String jsonPassword = userObject.getString("password");
+
+                if (jsonUsername.equals(username) && jsonPassword.equals(password)) {
+                    user = new User(jsonUsername, jsonPassword);
+                    break;
+                }
+            }
+
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
 }

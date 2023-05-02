@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:id="@+id/emptyRecommendationPlaceHolder"
-        android:text="Book camp for getting a recommendation"
+        android:text="Препоръчай къмпинг, за да получиш препоръка."
         android:layout_centerInParent="true"
         android:gravity="center"
         android:visibility="invisible"

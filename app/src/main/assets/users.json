@@ -1,16 +1,16 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "johnny",
-      "firstName": "John",
-      "lastName": "Doe",
-      "password": "qweasdzxc753",
-      "favourites": [
-        {}
-      ]
+      "username": "user1111",
+      "password": "pass1111"
+    },
+    {
+      "username": "user2222",
+      "password": "pass2222"
+    },
+    {
+      "username": "user3333",
+      "password": "pass3333"
     }
-
   ]
-
 }
