@@ -33,6 +33,10 @@ public class Hotel implements Serializable {
     @Expose
     private String imageUrl;
 
+    @SerializedName("coordinates")
+    @Expose
+    private String coordinates;
+
     public String getName() {
         return name;
     }
@@ -97,4 +101,11 @@ public class Hotel implements Serializable {
         this.imageUrl = imageUrl;
     }
 
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
 }

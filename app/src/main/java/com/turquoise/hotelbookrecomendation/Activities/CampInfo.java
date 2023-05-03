@@ -72,7 +72,7 @@ public class CampInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Create a Uri object from the Google Maps URL
-                Uri gmmIntentUri = Uri.parse("geo:42.7446, 27.8884");
+                Uri gmmIntentUri = Uri.parse("geo:"+hotel.getCoordinates());
 
                 // Create an Intent object and set the action to ACTION_VIEW
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
